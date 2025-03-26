@@ -53,12 +53,20 @@ const Dragons = () => {
 
                 <Text style={styles.text}>Shape the legend of your dragon! Fill in the details or let fate decide!</Text>
 
+                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('CreateDragonScreen')}>
+                    <Image source={require('../assets/buttons/start.png')} style={styles.image} />
+                </TouchableOpacity>
+
                 {
                     dragons.length > 0 && (
                         <ScrollView contentContainerStyle={{width: '100%', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap'}}>
                             {
                                 dragons.map((dragon, index) => (
-                                    <TouchableOpacity key={index} style={{width: '47%', alignItems: 'center', marginBottom: 24}}>
+                                    <TouchableOpacity 
+                                        key={index} 
+                                        style={{width: '47%', alignItems: 'center', marginBottom: 24}}
+                                        onPress={() => navigation.navigate('DragonDetailsScreen', { dragon })}
+                                        >
                                         <Image source={typeof dragon.image === 'string' ? { uri: dragon.image } : dragon.image} style={{width: '100%', height: 205, resizeMode: 'cover', marginBottom: 7}} />
                                         <Text style={styles.name}>{dragon.name}</Text>
                                     </TouchableOpacity>
@@ -68,10 +76,6 @@ const Dragons = () => {
                         </ScrollView>
                     )
                 }
-
-                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('CreateDragonScreen')}>
-                    <Image source={require('../assets/buttons/start.png')} style={styles.image} />
-                </TouchableOpacity>
 
             </View>
         </ImageBackground>

@@ -177,7 +177,7 @@ const CreateDragon = ({ dragon }) => {
                         <View style={{width: '100%'}}>
                             <Text style={styles.label}>Name</Text>
                             <View style={styles.inputContainer}>
-                                <Image source={require('../assets/buttons/grey.png')} style={styles.image} />
+                                <Image source={require('../assets/buttons/input.png')} style={styles.image} />
                                 <TextInput
                                     style={styles.input}
                                     value={name}
@@ -187,7 +187,7 @@ const CreateDragon = ({ dragon }) => {
 
                             <Text style={styles.label}>Origin</Text>
                             <View style={styles.inputContainer}>
-                                <Image source={require('../assets/buttons/grey.png')} style={styles.image} />
+                                <Image source={require('../assets/buttons/input.png')} style={styles.image} />
                                 <TextInput
                                     style={styles.input}
                                     value={origin}
@@ -197,7 +197,7 @@ const CreateDragon = ({ dragon }) => {
 
                             <Text style={styles.label}>Personality</Text>
                             <View style={styles.inputContainer}>
-                                <Image source={require('../assets/buttons/grey.png')} style={styles.image} />
+                                <Image source={require('../assets/buttons/input.png')} style={styles.image} />
                                 <TextInput
                                     style={styles.input}
                                     value={personality}
@@ -213,7 +213,7 @@ const CreateDragon = ({ dragon }) => {
                         <View style={{width: '100%'}}>
                             <Text style={styles.label}>Scale Color</Text>
                             <View style={styles.inputContainer}>
-                                <Image source={require('../assets/buttons/grey.png')} style={styles.image} />
+                                <Image source={require('../assets/buttons/input.png')} style={styles.image} />
                                 <TextInput
                                     style={styles.input}
                                     value={scale}
@@ -223,7 +223,7 @@ const CreateDragon = ({ dragon }) => {
 
                             <Text style={styles.label}>Body Type</Text>
                             <View style={styles.inputContainer}>
-                                <Image source={require('../assets/buttons/grey.png')} style={styles.image} />
+                                <Image source={require('../assets/buttons/input.png')} style={styles.image} />
                                 <TextInput
                                     style={styles.input}
                                     value={body}
@@ -233,7 +233,7 @@ const CreateDragon = ({ dragon }) => {
 
                             <Text style={styles.label}>Eye Color</Text>
                             <View style={styles.inputContainer}>
-                                <Image source={require('../assets/buttons/grey.png')} style={styles.image} />
+                                <Image source={require('../assets/buttons/input.png')} style={styles.image} />
                                 <TextInput
                                     style={styles.input}
                                     value={eyes}
@@ -243,7 +243,7 @@ const CreateDragon = ({ dragon }) => {
 
                             <Text style={styles.label}>Tail Type</Text>
                             <View style={styles.inputContainer}>
-                                <Image source={require('../assets/buttons/grey.png')} style={styles.image} />
+                                <Image source={require('../assets/buttons/input.png')} style={styles.image} />
                                 <TextInput
                                     style={styles.input}
                                     value={tail}
@@ -259,7 +259,7 @@ const CreateDragon = ({ dragon }) => {
                         <View style={{width: '100%'}}>
                             <Text style={styles.label}>Breath Power</Text>
                             <View style={styles.inputContainer}>
-                                <Image source={require('../assets/buttons/grey.png')} style={styles.image} />
+                                <Image source={require('../assets/buttons/input.png')} style={styles.image} />
                                 <TextInput
                                     style={styles.input}
                                     value={power}
@@ -269,7 +269,7 @@ const CreateDragon = ({ dragon }) => {
 
                             <Text style={styles.label}>Special Ability</Text>
                             <View style={styles.inputContainer}>
-                                <Image source={require('../assets/buttons/grey.png')} style={styles.image} />
+                                <Image source={require('../assets/buttons/input.png')} style={styles.image} />
                                 <TextInput
                                     style={styles.input}
                                     value={ability}
@@ -279,7 +279,7 @@ const CreateDragon = ({ dragon }) => {
 
                             <Text style={styles.label}>Combat Style</Text>
                             <View style={styles.inputContainer}>
-                                <Image source={require('../assets/buttons/grey.png')} style={styles.image} />
+                                <Image source={require('../assets/buttons/input.png')} style={styles.image} />
                                 <TextInput
                                     style={styles.input}
                                     value={combat}
@@ -295,7 +295,7 @@ const CreateDragon = ({ dragon }) => {
                         <View style={{width: '100%'}}>
                             <Text style={styles.label}>Territory Type</Text>
                             <View style={styles.inputContainer}>
-                                <Image source={require('../assets/buttons/grey.png')} style={styles.image} />
+                                <Image source={require('../assets/buttons/input.png')} style={styles.image} />
                                 <TextInput
                                     style={styles.input}
                                     value={territory}
@@ -305,7 +305,7 @@ const CreateDragon = ({ dragon }) => {
 
                             <Text style={styles.label}>Habitat Size</Text>
                             <View style={styles.inputContainer}>
-                                <Image source={require('../assets/buttons/grey.png')} style={styles.image} />
+                                <Image source={require('../assets/buttons/input.png')} style={styles.image} />
                                 <TextInput
                                     style={styles.input}
                                     value={habitat}
@@ -321,7 +321,7 @@ const CreateDragon = ({ dragon }) => {
                         <View style={{width: '100%'}}>
                             <Text style={styles.label}>Weakness</Text>
                             <View style={styles.inputContainer}>
-                                <Image source={require('../assets/buttons/grey.png')} style={styles.image} />
+                                <Image source={require('../assets/buttons/input.png')} style={styles.image} />
                                 <TextInput
                                     style={styles.input}
                                     value={weakness}
@@ -331,7 +331,7 @@ const CreateDragon = ({ dragon }) => {
 
                             <Text style={styles.label}>Special Traits</Text>
                             <View style={styles.inputContainer}>
-                                <Image source={require('../assets/buttons/grey.png')} style={styles.image} />
+                                <Image source={require('../assets/buttons/input.png')} style={styles.image} />
                                 <TextInput
                                     style={styles.input}
                                     value={traits}
@@ -341,7 +341,7 @@ const CreateDragon = ({ dragon }) => {
 
                             <Text style={styles.label}>Dragon Symbol</Text>
                             <View style={styles.inputContainer}>
-                                <Image source={require('../assets/buttons/grey.png')} style={styles.image} />
+                                <Image source={require('../assets/buttons/input.png')} style={styles.image} />
                                 <TextInput
                                     style={styles.input}
                                     value={symbol}
@@ -356,7 +356,7 @@ const CreateDragon = ({ dragon }) => {
                     index === 5 && (
                         <View style={{width: '100%'}}>
                             <TouchableOpacity style={[styles.button, {marginBottom: 24}]} onPress={uploadDragon}>
-                                <Image source={require('../assets/buttons/grey.png')} style={styles.image} />
+                                <Image source={require('../assets/buttons/input.png')} style={styles.image} />
                                 <View style={styles.buttonInner}>
                                     <Text style={styles.buttonText}>{uploadedImage ? 'Uploaded' : 'Upload picture'}</Text>
                                     <View style={{width: 24, height: 24}}>
