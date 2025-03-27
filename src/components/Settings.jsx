@@ -45,10 +45,10 @@ const Settings = () => {
         );
     };
 
-    // change
     const resetData = async () => {
         try {
-            await AsyncStorage.removeItem("");
+            await AsyncStorage.removeItem('dragons');
+            await AsyncStorage.removeItem('stories');
             Alert.alert("Success", "Entire data has been reset.");
         } catch (error) {
             console.error("Failed to reset data", error);

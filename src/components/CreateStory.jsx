@@ -19,7 +19,7 @@ const tags = [
 const CreateStory = ({ story }) => {
     const navigation = useNavigation();
     const [dragons, setDragons] = useState([]);
-    const [selectedDragon, setSelectedDragon] = useState(story?.dragon || null);
+    const [selectedDragon, setSelectedDragon] = useState(story?.selectedDragon || null);
     const [showDragons, setShowDragons] = useState(false);
     const [title, setTitle] = useState(story?.title || null);
     const [content, setContent] = useState(story?.content || null);
@@ -95,6 +95,7 @@ const CreateStory = ({ story }) => {
             alert(story ? "Story updated successfully!" : "Story saved successfully!");
 
             navigation.navigate('MyStoriesScreen');
+
         } catch (error) {
             alert("Error saving story:", error);
         }
@@ -144,7 +145,7 @@ const CreateStory = ({ story }) => {
                                                 dragons.map((dragon, index) => (
                                                     <TouchableOpacity 
                                                         key={index} 
-                                                        style={{width: '47%', alignItems: 'center', marginBottom: 24, ...(selectedDragon?.name === dragon.name ? { borderWidth: 4, borderColor: '#ff6700' } : {})}} 
+                                                        style={{width: '47%', alignItems: 'center', marginBottom: 24, ...(selectedDragon?.id === dragon.id ? { borderWidth: 4, borderColor: '#ff6700' } : {})}} 
                                                         onPress={() => setSelectedDragon(dragon)}
                                                         >
                                                         <Image source={typeof dragon.image === 'string' ? { uri: dragon.image } : dragon.image} style={{width: '100%', height: 205, resizeMode: 'cover', marginBottom: 7}} />

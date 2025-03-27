@@ -33,7 +33,7 @@ const dragons = [
     require('../assets/dragons/5.png'),
     require('../assets/dragons/6.png'),
     require('../assets/dragons/7.png'),
-]
+];
 
 const CreateDragon = ({ dragon }) => {
     const navigation = useNavigation();
@@ -55,6 +55,208 @@ const CreateDragon = ({ dragon }) => {
     const [symbol, setSymbol] = useState(dragon?.symbol || null);
     const [uploadedImage, setUploadedImage] = useState(dragon?.uploadedImage || null);
     const [image, setImage] = useState(dragon?.image || null);
+
+    const random = {
+        0: [{
+            field: 'name',
+            setter: setName,
+            inputs: [
+                'Astravyx',
+                'Luminthar',
+                'Soltheris',
+                'Nebularis',
+                'Zephiron',
+                'Aetheron',
+                'Cosmoroth',
+                'Celestir',
+                'Starlith',
+                'Quasaris'
+            ]
+        },
+        {
+            field: 'origin',
+            setter: setOrigin,
+            inputs: [
+                'Ancient Volcanoes',
+                'Frozen Peaks',
+                'Mystic Forests',
+                'Stormy Abyss',
+                'Celestial Realms',
+                'Desert Wastelands',
+                'Deep Caverns',
+                'Ruins of Lost Civilizations'
+            ]
+        },
+        {
+            field: 'personality',
+            setter: setPersonality,
+            inputs: [
+                'Wise and mysterious',
+                'Chaotic and unpredictable',
+                'Guardian of realms',
+                'Solitary and fearsome',
+                'Playful and mischievous',
+                'Cunning and deceptive',
+                'Loyal and protective',
+                'Merciless conqueror'
+            ]
+        }],
+        1: [{
+            field: 'scale',
+            setter: setScale,
+            inputs: [
+                'Crimson Red',
+                'Sapphire Blue',
+                'Emerald Green',
+                'Shadow Black',
+                'Golden Glow',
+                'Iridescent Silver',
+                'Pure White',
+                'Obsidian Black',
+                'Deep Amethyst'
+            ]
+        },
+        {
+            field: 'body',
+            setter: setBody,
+            inputs: [
+                'Serpentine and sleek',
+                'Massive and armored',
+                'Wingless but swift',
+                'Multi-headed and terrifying',
+                'Ethereal and ghostly',
+                'Quadrupedal and muscular',
+                'Bipedal and agile',
+                'Covered in spikes and horns'
+            ]
+        },
+        {
+            field: 'eyes',
+            setter: setEyes,
+            inputs: [
+                'Burning Amber',
+                'Frosty Silver',
+                'Deep Emerald',
+                'Glowing Purple',
+                'Shimmering Gold',
+                'Piercing Ice Blue',
+                'Smoky Gray'
+            ]
+        },
+        {
+            field: 'tail',
+            setter: setTail,
+            inputs: [
+                'Long and whip-like',
+                'Clubbed and spiked',
+                'Split into two',
+                'Bladed and sharp',
+                'Covered in crystals',
+                'Coiled like a serpent'
+            ]
+        }],
+        2: [{
+            field: 'power',
+            setter: setPower,
+            inputs: [
+                'Firestorm',
+                'Ice Shards',
+                'Poison Mist',
+                'Electric Surge',
+                'Soundwave Roar',
+                'Acidic Spit',
+                'Plasma Blast',
+                'Black Smoke',
+                'Magma Burst',
+                'Pure Energy Pulse'
+            ]
+        },
+        {
+            field: 'ability',
+            setter: setAbility,
+            inputs: [
+                'Telepathic Communication',
+                'Shapeshifting',
+                'Time Manipulation',
+                'Shadow Melding',
+                'Meteor Summoning',
+                'Camouflage in the environment',
+                'Hypnotic Gaze',
+                'Control over weather',
+                'Regeneration'
+            ]
+        },
+        {
+            field: 'combat',
+            setter: setCombat,
+            inputs: [
+                'Aerial Striker',
+                'Ground Brawler',
+                'Stealth Assassin',
+                'Magic Caster',
+                'Defensive Guardian',
+                'Speed-Oriented Skirmisher'
+            ]
+        }],
+        3: [{
+            field: 'territory',
+            setter: setTerritory,
+            inputs: [
+                'Lava Caves',
+                'Floating Isles',
+                'Sunken Temples',
+                'Ice Canyons',
+                'The Forbidden Sky',
+                'Ancient Catacombs',
+                'Stormy Highlands',
+                'Ruined Cities',
+            ]
+        },
+        {
+            field: 'habitat',
+            setter: setHabitat,
+            inputs: [
+                'A hidden sanctuary',
+                'A vast mountain range',
+                'An underground labyrinth',
+                'A celestial fortress',
+                'An endless sea'
+            ]
+        }],
+        4: [{
+            field: 'weakness',
+            setter: setWeakness,
+            inputs: [
+                'Vulnerable to cold',
+                'Weak against magic',
+                'Cannot fly at night',
+                'Easily enraged',
+                'Fear of water'
+            ]
+        },
+        {
+            field: 'traits',
+            setter: setTraits,
+            inputs: [
+                'Can communicate with humans',
+                'Has an ancient curse',
+                'Possesses a hidden form',
+                'Can control minds',
+                'Only awakens every 100 years'
+            ]
+        },
+        {
+            field: 'symbol',
+            setter: setSymbol,
+            inputs: [
+                'Phoenix Mark',
+                'Rune of the Ancients',
+                'Burning Eye',
+                'Moonlit Crest',
+                'Celestial Spiral'
+            ]
+        }]
+    };
 
     const handleNext = () => {
         if(index === 5) {
@@ -89,6 +291,17 @@ const CreateDragon = ({ dragon }) => {
         } else (
             setImage(dragon)
         )
+    };
+
+    const handleRandomize = () => {
+        const fields = random[index];
+    
+        if (!fields) return;
+    
+        fields.forEach(({ setter, inputs }) => {
+            const randomValue = inputs[Math.floor(Math.random() * inputs.length)];
+            setter(randomValue);
+        });
     };
 
     const saveDragon = async () => {
@@ -134,6 +347,7 @@ const CreateDragon = ({ dragon }) => {
             alert(dragon ? "Dragon updated successfully!" : "Dragon saved successfully!");
 
             navigation.navigate('DragonsScreen');
+
         } catch (error) {
             alert("Error saving dragon:", error);
         }
@@ -182,6 +396,7 @@ const CreateDragon = ({ dragon }) => {
                                     style={styles.input}
                                     value={name}
                                     onChangeText={setName}
+                                    testID='name'
                                 />
                             </View>
 
@@ -192,6 +407,7 @@ const CreateDragon = ({ dragon }) => {
                                     style={styles.input}
                                     value={origin}
                                     onChangeText={setOrigin}
+                                    testID='origin'
                                 />
                             </View>
 
@@ -202,6 +418,7 @@ const CreateDragon = ({ dragon }) => {
                                     style={styles.input}
                                     value={personality}
                                     onChangeText={setPersonality}
+                                    testID='personality'
                                 />
                             </View>
                         </View>
@@ -382,9 +599,13 @@ const CreateDragon = ({ dragon }) => {
                 }
 
                 <View style={{width: '100%', position: 'absolute', bottom: 40}}>
-                    <View style={[styles.button, {marginBottom: 12}]}>
-                        <Image source={require('../assets/buttons/sparkles.png')} style={styles.image} />
-                    </View>
+                    {
+                        index !== 5 && (
+                            <TouchableOpacity style={[styles.button, {marginBottom: 12}]} onPress={handleRandomize}>
+                                <Image source={require('../assets/buttons/sparkles.png')} style={styles.image} />
+                            </TouchableOpacity>    
+                        )
+                    }
                     <TouchableOpacity style={styles.button} onPress={handleNext}>
                         <Image source={index === 5 ? require('../assets/buttons/save.png') : require('../assets/buttons/next.png')} style={styles.image} />
                     </TouchableOpacity>

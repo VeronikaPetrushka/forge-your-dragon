@@ -40,6 +40,9 @@ const Icons = ({ type }) => {
     case 'upload':
       imageSource = require('../assets/icons/upload.png');
       break;
+    case 'edit':
+      imageSource = require('../assets/icons/edit.png');
+      break;
   }
 
   return (

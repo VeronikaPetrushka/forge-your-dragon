@@ -11,6 +11,10 @@ import MyStoriesScreen from './src/screens/MyStoriesScreen';
 import DragonsScreen from './src/screens/DragonsScreen';
 import CreateDragonScreen from './src/screens/CreateDragonScreen';
 import CreateStoryScreen from './src/screens/CreateStoryScreen';
+import DragonDetailsScreen from './src/screens/DragonDetailsScreen';
+import StoryDetailsScreen from './src/screens/StoryDetailsScreen';
+import DragonGameScreen from './src/screens/DragonGameScreen';
+import RulesScreen from './src/screens/RulesScreen';
 
 import { MusicProvider } from './src/constants/music';
 import Player from './src/components/Player';
@@ -82,6 +86,26 @@ const App = () => {
                   <Stack.Screen 
                         name="CreateStoryScreen" 
                         component={CreateStoryScreen} 
+                        options={{ headerShown: false }} 
+                  />
+                  <Stack.Screen 
+                        name="DragonDetailsScreen" 
+                        component={DragonDetailsScreen} 
+                        options={{ headerShown: false }} 
+                  />
+                  <Stack.Screen 
+                        name="StoryDetailsScreen" 
+                        component={StoryDetailsScreen} 
+                        options={{ headerShown: false }} 
+                  />
+                  <Stack.Screen 
+                        name="DragonGameScreen" 
+                        component={DragonGameScreen} 
+                        options={{ headerShown: false }} 
+                  />
+                  <Stack.Screen 
+                        name="RulesScreen" 
+                        component={RulesScreen} 
                         options={{ headerShown: false }} 
                   />
               </Stack.Navigator>

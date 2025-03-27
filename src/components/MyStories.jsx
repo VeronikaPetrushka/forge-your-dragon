@@ -79,7 +79,7 @@ const MyStories = () => {
                             {Object.entries(groupedStories).map(([date, stories]) => (
                                 <View key={date} style={{ marginBottom: 20 }}>
                                     <Text style={styles.date}>{date}</Text>
-                                    <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.storyScroll}>
+                                    <ScrollView horizontal showsHorizontalScrollIndicator={false}>
                                         {stories.map((story, index) => (
                                             <TouchableOpacity 
                                                 key={index} 
