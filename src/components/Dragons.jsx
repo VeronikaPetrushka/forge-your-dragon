@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import { ImageBackground, View, TouchableOpacity, Text, Image, StyleSheet, Dimensions, ScrollView } from "react-native";
+import { ImageBackground, View, TouchableOpacity, Text, Image, StyleSheet, Dimensions, ScrollView, Modal } from "react-native";
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Icons from "./Icons";
@@ -9,6 +9,8 @@ const { height } = Dimensions.get('window');
 const Dragons = () => {
     const navigation = useNavigation();
     const [dragons, setDragons] = useState([]);
+    const [modalVisible, setModalVisible] = useState(false);
+    const [dragonToDelete, setDragonToDelete] = useState(null);
 
     useFocusEffect(
         useCallback(() => {
@@ -33,7 +35,34 @@ const Dragons = () => {
         }
     };
 
-    console.log(dragons)
+    const handleLongPress = (dragon) => {
+        setDragonToDelete(dragon);
+        setModalVisible(true);
+    };
+
+    const handleModalClose = () => {
+        setDragonToDelete(null);
+        setModalVisible(false);
+    };
+
+    const deleteDragon = async () => {
+        if (!dragonToDelete) return;
+    
+        try {
+            const storedDragons = await AsyncStorage.getItem("dragons");
+            if (storedDragons) {
+                const parsedDragons = JSON.parse(storedDragons);
+                const updatedDragons = parsedDragons.filter(dragon => dragon.id !== dragonToDelete.id);
+    
+                await AsyncStorage.setItem("dragons", JSON.stringify(updatedDragons));
+                setDragons(updatedDragons);
+            }
+        } catch (error) {
+            console.error("Error deleting dragon:", error);
+        }
+    
+        handleModalClose();
+    };
 
     return (
         <ImageBackground source={require('../assets/back/2.png')} style={{flex: 1}}>
@@ -66,6 +95,7 @@ const Dragons = () => {
                                         key={index} 
                                         style={{width: '47%', alignItems: 'center', marginBottom: 24}}
                                         onPress={() => navigation.navigate('DragonDetailsScreen', { dragon })}
+                                        onLongPress={() => handleLongPress(dragon)}
                                         >
                                         <Image source={typeof dragon.image === 'string' ? { uri: dragon.image } : dragon.image} style={{width: '100%', height: 205, resizeMode: 'cover', marginBottom: 7}} />
                                         <Text style={styles.name}>{dragon.name}</Text>
@@ -76,6 +106,26 @@ const Dragons = () => {
                         </ScrollView>
                     )
                 }
+
+                <Modal 
+                    visible={modalVisible} 
+                    transparent={true}
+                    animationType="fade"
+                    onRequestClose={handleModalClose}
+                    >
+                    <View style={styles.modalContainer}>
+                        <View style={styles.modalContent}>
+                            <Text style={styles.modalTitle}>Delete</Text>
+                            <Text style={styles.modalText}>Are you sure you want to delete dragon {dragonToDelete?.name} ?</Text>
+                            <TouchableOpacity style={styles.modalBtn} onPress={deleteDragon}>
+                                <Text style={styles.modalResetText}>Delete</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={styles.modalBtn} onPress={handleModalClose}>
+                                <Text style={styles.modalCloseText}>Close</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                </Modal>
 
             </View>
         </ImageBackground>
@@ -130,6 +180,62 @@ const styles = StyleSheet.create({
         color: '#fff', 
         fontSize: 16, 
         fontWeight: '500',
+    },
+
+    modalContainer: { 
+        flex: 1, 
+        alignItems: 'center', 
+        justifyContent: 'center', 
+        backgroundColor: 'rgba(0, 0, 0, 0.5)' 
+    },
+
+    modalContent: {
+        width: '80%',
+        backgroundColor: 'rgba(242, 242, 242, 0.8)',
+        borderRadius: 12,
+        alignItems: 'center'
+    },
+
+    modalTitle: { 
+        color: '#000', 
+        fontSize: 17, 
+        fontWeight: '600',
+        textAlign: 'center',
+        marginBottom: 3,
+        marginTop: 15
+    },
+    
+    modalText: { 
+        color: '#000', 
+        fontSize: 13, 
+        fontWeight: '400',
+        lineHeight: 18,
+        textAlign: 'center',
+        width: '85%',
+        marginBottom: 16
+    },
+    
+    modalBtn: { 
+        width: '100%',
+        paddingVertical: 11, 
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderTopWidth: 0.3,
+        borderColor: '#3c3c3c' 
+    },
+    
+    modalResetText: { 
+        color: '#ff3b30', 
+        fontSize: 17,
+        fontWeight: '600',
+        lineHeight: 22
+    },
+
+    modalCloseText: {
+        color: '#000', 
+        fontSize: 17,
+        fontWeight: '400',
+        lineHeight: 22 
     }
 
 });
